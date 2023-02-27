@@ -18,7 +18,7 @@ from models import MLP, CNNMnist, CNNFashion_Mnist, CNNCifar
 if __name__ == '__main__':
     args = args_parser()
     if args.gpu:
-        torch.cuda.set_device(args.gpu)
+        torch.cuda.set_device(int(args.gpu))
     device = 'cuda' if args.gpu else 'cpu'
 
     # load datasets
@@ -86,12 +86,13 @@ if __name__ == '__main__':
 
     # Plot loss
     plt.figure()
-    plt.plot(range(len(epoch_loss)), epoch_loss)
+    plt.plot(range(len(epoch_loss)),    epoch_loss)
     plt.xlabel('epochs')
     plt.ylabel('Train loss')
-    plt.savefig('../save/nn_{}_{}_{}.png'.format(args.dataset, args.model,
-                                                 args.epochs))
-
+    #plt.savefig('..\\save\\nn_{}_{}_{}.png'.format(args.dataset, args.model,
+     #                                            args.epochs))
+    plt.savefig(r'F:\\project\\Federated-Learning-PyTorch\\save\\nn_{}_{}_{}.png'.format(args.dataset, args.model,
+                                                                                         args.epochs))
     # testing
     test_acc, test_loss = test_inference(args, global_model, test_dataset)
     print('Test on', len(test_dataset), 'samples')
